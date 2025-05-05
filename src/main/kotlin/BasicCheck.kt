@@ -12,12 +12,12 @@ internal class BasicCheck(name: String?) : Scan(name) {
     //this is where your scan logic goes
     override fun doScan(baseReq: ByteArray, service: IHttpService): MutableList<IScanIssue> {
         val checkRequestResponse = Utilities.buildMontoyaReq(baseReq, service) //Easy way to build a montoya request so you can stop messing with the old version
-        checkRequestResponse.withHeader("X-Outpost24", "Outpost24washere")
+        checkRequestResponse.withHeader("X-Assured", "Assured")
 
         val resp = Utilities.montoyaApi.http().sendRequest(checkRequestResponse)
 
-        if (resp.response().body().toString().contains("Outpost24washere")) {
-            report("X-Outpost24 header reflection", "The X-Outpost24 header randomly caused reflected content in the response body!", resp) //Reporing an issue is this easy too!
+        if (resp.response().body().toString().contains("Assuredwashere")) {
+            report("X-Assured header reflection", "The X-Assured header randomly caused reflected content in the response body!", resp) //Reporing an issue is this easy too!
         }
 
         //Check a settings
