@@ -21,6 +21,7 @@ class BurpExtender: BurpExtension, IExtensionStateListener, IBurpExtender {
     //Grab our MontoyaApi instance. You can reach this using Utilities.montoyaApi from now on.
     override fun initialize(api: MontoyaApi) {
         Utilities.montoyaApi = api
+	api.http().registerHttpHandler(LiveScan()) // Allow live scan.
     }
 
 
